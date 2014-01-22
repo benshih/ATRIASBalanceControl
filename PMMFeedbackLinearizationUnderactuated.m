@@ -81,7 +81,7 @@ function sysT = SystemDynamics()
     % 0). 
     T_th = 0;
     T_p1 = solve(desAccel(2) == k1*(p1des - p1) + k2*(-p1d), t1);
-    T_p2 = solve(desAccel(3) == k1*(p2des - p2) + k2*(-p2d), t2);
+    T_p2 = solve(desAccel(3) == k3*(p2des - p2) + k4*(-p2d), t2);
     F_l = 0;
 
     % Desired dynamics. Gains are arbitrary at the moment.
@@ -93,21 +93,44 @@ function EvaluateTorques(sysT)
     % Using 'From Workspace', I can import T_p1 and T_p2.
     % Using 'To Workspace', I can bring back the trunk-hip, leg1-hip, and
     % leg2-hip angles/angular velocities/angular accelerations.
-    T_th = sysT(1);
+%     T_th = sysT(1);
     T_p1 = sysT(2);
     T_p2 = sysT(3);
-    F_l = sysT(4);
+%     F_l = sysT(4);
     
     % Static system parameters
+    % Assumptions: leg masses are negligible, leg rotational inertia are
+    % negligible.
     l = 1; % leg length [m]
-    m = 
-    It = 
+    m = 44; % mass of the torso [kg]
+    It = 1.37; % rotational inertia about torso CoM [kg*m^2]
+    Im = 
     d = 
+    g = 9.81; % gravitational acceleration [m/s^2]
+    
+    % Desired
+    p1des = 
+    p2des = 
     
     % default units for angles: radians
     p1 = 
+    p2 = 
     th = timeseries
+    p1d =
+    p2d = 
+    thd = 
+    % ld = 0 (currently don't have, wait until the prismatic is in
+    % --are these timeseries gonna be valid for each time step? or do you
+    % have to loop through the simulation
     
+    % Gains (arbitrary)
+    k1 = 
+    k2 = 
+    k3 = 
+    k4 = 
     
+    http://www.mathworks.com/help/simulink/slref/fromworkspace.html
     
+    % Substitute and evaluate(can only subs one value at a time)
+    blah = subs(
 end
